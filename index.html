@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fbf7f1">
+<title>취향저격 디저트 | 나의 디저트 취향 테스트</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap');
+:root{--bg:#fbf7f1;--paper:#fff;--ink:#29251f;--muted:#82796e;--line:#eee5da;--accent:#c96f48;--accent2:#f4dfcf;--shadow:0 18px 55px rgba(77,53,31,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Gowun Dodum',sans-serif;min-height:100vh;padding:28px 16px;display:flex;align-items:center;justify-content:center}
+button{font:inherit;cursor:pointer}.app{width:min(100%,780px);background:var(--paper);border:1px solid #f1e9df;border-radius:24px;padding:clamp(24px,5vw,54px);box-shadow:var(--shadow);min-height:580px;position:relative;overflow:hidden}
+.app:before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:#f8eadc;right:-120px;top:-130px;pointer-events:none}
+.screen{position:relative;z-index:1}.hidden{display:none!important}.eyebrow{text-align:center;color:var(--accent);font-size:12px;letter-spacing:.18em;font-weight:bold;margin:0 0 13px}.brand{text-align:center;font:30px 'Jua',sans-serif;letter-spacing:-1px;margin:0}.subtitle{text-align:center;color:var(--muted);line-height:1.8;margin:13px auto 30px;max-width:500px}
+.hero-art{height:190px;border-radius:18px;margin:0 auto 28px;max-width:530px;background:linear-gradient(135deg,#f5e4d2,#fff5e9 55%,#f0d6c2);display:flex;align-items:center;justify-content:center;gap:16px;font-size:clamp(38px,7vw,65px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.7)}
+.hero-art span{filter:drop-shadow(0 8px 5px #b58c6a33);transform:rotate(var(--r,0deg))}.hero-art span:nth-child(2){--r:8deg}.hero-art span:nth-child(3){--r:-7deg}.hero-art span:nth-child(4){--r:5deg}
+.primary,.secondary{width:100%;border:0;border-radius:12px;padding:17px 20px;font-weight:bold;transition:.2s}.primary{background:#302a24;color:white}.primary:hover{background:var(--accent);transform:translateY(-1px)}.secondary{background:#f5eee7;color:#5c5045;margin-top:10px}.tiny{text-align:center;font-size:12px;color:#a39a90;margin-top:17px}
+.progress-top{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin:2px 0 10px}.progress{height:6px;background:#f0e9e1;border-radius:20px;overflow:hidden}.fill{height:100%;width:0;background:var(--accent);border-radius:20px;transition:width .25s}
+.q-kicker{text-align:center;color:var(--accent);font-size:12px;letter-spacing:.1em;margin:34px 0 12px}.question{font:clamp(22px,4vw,29px) 'Jua',sans-serif;text-align:center;line-height:1.5;min-height:90px;display:flex;align-items:center;justify-content:center;margin:0 auto 26px;max-width:600px}
+.answers{display:grid;gap:11px}.answer{background:#fff;border:1px solid var(--line);border-radius:13px;padding:17px 18px;text-align:left;display:flex;gap:13px;align-items:center;color:#40382f;line-height:1.55;transition:.18s}.answer:hover{border-color:var(--accent);background:#fffaf6;transform:translateY(-1px)}.answer .dot{width:23px;height:23px;border:1.5px solid #d9cfc3;border-radius:50%;flex:none;display:grid;place-items:center;color:var(--accent);font-size:12px}.answer:hover .dot{border-color:var(--accent)}
+.nav{display:flex;justify-content:space-between;margin-top:18px}.back{border:0;background:none;color:var(--muted);padding:8px 0}.back:disabled{opacity:.25;cursor:default}
+.result-head{text-align:center}.result-icon{font-size:58px;margin:5px 0 8px}.result-title{font:clamp(28px,5vw,38px) 'Jua',sans-serif;margin:0}.result-sub{color:var(--muted);margin:10px auto 24px;line-height:1.7}
+.profile{background:#fcf8f3;border-radius:17px;padding:22px;margin:22px 0}.profile h3,.recommend h3{font:20px 'Jua',sans-serif;margin:0 0 17px}.barrow{display:grid;grid-template-columns:75px 1fr 42px;gap:10px;align-items:center;margin:12px 0;font-size:13px}.bar{height:11px;background:#eee6dc;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;border-radius:20px;background:#c8b4a1}.barrow.top .bar i{background:var(--accent)}.barrow.top strong{color:var(--accent)}
+.recommend{margin-top:30px}.recommend-intro{color:var(--muted);font-size:13px;margin:-8px 0 16px}.desserts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.dessert{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#fff}.dessert-visual{height:150px;overflow:hidden;background:#f8eadc}.dessert-visual img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}.dessert:hover .dessert-visual img{transform:scale(1.04)}.dessert:nth-child(3n+2) .dessert-visual{background:#f1e7db}.dessert-body{padding:13px}.dessert-title{font:17px 'Jua',sans-serif;margin:0 0 5px}.dessert-desc{font-size:12px;color:var(--muted);line-height:1.6;min-height:38px}.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}.tag{font-size:10px;padding:4px 7px;border-radius:20px;background:#f6eee6;color:#88664e}.rank{font-size:10px;color:var(--accent);font-weight:bold;letter-spacing:.08em;margin-bottom:5px}
+.result-note{background:#fff8f1;border-left:3px solid var(--accent);padding:15px 17px;border-radius:8px;color:#6d5b4c;font-size:13px;line-height:1.7;margin:22px 0}
+.footer{text-align:center;color:#aaa197;font-size:11px;margin-top:22px}
+@media(max-width:560px){body{padding:12px}.app{padding:25px 19px;min-height:unset;border-radius:18px}.brand{font-size:26px}.hero-art{height:145px}.desserts{grid-template-columns:1fr}.dessert{display:grid;grid-template-columns:105px 1fr}.dessert-visual{height:100%;min-height:125px}.dessert-visual img{min-height:125px}.dessert-body{padding:12px}.dessert-desc{min-height:unset}.barrow{grid-template-columns:67px 1fr 38px}}
+
+.all-catalog{margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+.catalog-filters{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 16px}
+.filter{border:1px solid var(--line);background:#fffaf5;color:#806b59;border-radius:20px;padding:8px 12px;font-size:12px}
+.filter.active{background:var(--accent);color:white;border-color:var(--accent)}
+.catalog-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.catalog-grid .dessert-visual{height:112px}
+.catalog-grid .dessert-title{font-size:15px}
+.catalog-grid .dessert-desc{font-size:11px;min-height:unset}
+@media(max-width:560px){.catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.catalog-grid .dessert{display:block}.catalog-grid .dessert-visual{height:100px;min-height:unset}.catalog-grid .dessert-visual img{min-height:unset}}
+
+</style>
+</head>
+<body>
+<main class="app">
+<section id="start" class="screen">
+<p class="eyebrow">DESSERT PERSONALITY TEST</p>
+<h1 class="brand">취향저격 디저트</h1>
+<p class="subtitle">여러 질문에 답하고 나면, 나도 몰랐던 디저트 취향을 발견할 수 있어요.<br>나의 취향에 딱 맞는 디저트를 만나볼까요?</p>
+<div class="hero-art" aria-label="디저트 일러스트"><span>🍰</span><span>🥧</span><span>🍮</span><span>🧁</span></div>
+<button class="primary" id="startBtn">나의 디저트 취향 알아보기 →</button>
+<p class="tiny">총 12문항 · 디저트 26종 분석 · 약 2분 소요 · 답변은 이 기기에서만 분석돼요</p>
+</section>
+
+<section id="quiz" class="screen hidden">
+<div class="progress-top"><span id="progressText">QUESTION 01 / 12</span><strong id="progressPct">0%</strong></div>
+<div class="progress"><div class="fill" id="progressFill"></div></div>
+<p class="q-kicker">나의 디저트 취향을 알아보는 중</p>
+<h2 class="question" id="questionText"></h2>
+<div class="answers" id="answers"></div>
+<div class="nav"><button class="back" id="backBtn" disabled>← 이전 질문</button><span class="tiny">하나의 답변을 선택해 주세요</span></div>
+</section>
+
+<section id="result" class="screen hidden">
+<div class="result-head">
+<p class="eyebrow">YOUR DESSERT PROFILE</p>
+<div class="result-icon" id="resultIcon">🍰</div>
+<h2 class="result-title" id="resultTitle"></h2>
+<p class="result-sub" id="resultDesc"></p>
+</div>
+<div class="profile">
+<h3>나의 맛 취향 분포</h3>
+<div id="tasteBars"></div>
+</div>
+<div class="recommend">
+<h3>45종 중 당신을 위한 디저트 추천 TOP 5</h3>
+<p class="recommend-intro">여섯 가지 맛 취향 중 나의 1·2순위에 가까운 디저트를 우선 추천해요.</p>
+<div class="desserts" id="dessertCards"></div>
+</div>
+
+<div class="all-catalog">
+  <h3>전체 디저트 45종 둘러보기</h3>
+  <p class="recommend-intro">추천 TOP 5에 들지 않은 디저트도 여기에서 모두 확인할 수 있어요.</p>
+  <div class="catalog-filters" id="catalogFilters">
+    <button class="filter active" data-filter="전체">전체</button>
+    <button class="filter" data-filter="케이크·디저트">케이크·디저트</button>
+    <button class="filter" data-filter="구움과자">구움과자</button>
+    <button class="filter" data-filter="빵">빵</button>
+    <button class="filter" data-filter="페이스트리">페이스트리</button>
+    <button class="filter" data-filter="기타">기타</button>
+  </div>
+  <div class="desserts catalog-grid" id="allDessertCards"></div>
+</div>
+<div class="result-note" id="resultNote"></div>
+<button class="primary" id="restartBtn">처음부터 다시 검사하기</button>
+<p class="footer">취향저격 디저트 · 나의 선택을 바탕으로 만든 취향 분석<br>사진 출처: Unsplash · 각 사진은 Unsplash 라이선스에 따라 사용</p>
+</section>
+</main>
+<script>
+const TASTES = ['달콤함','고소함','상큼함','쌉싸름함','담백함','짭짤함'];
+const QUESTIONS = [{"q":"디저트를 고를 때 가장 먼저 끌리는 맛은?","a":[["설탕이나 시럽처럼 기분 좋은 단맛",[3,0,0,0,0,0]],["버터나 견과류의 깊은 고소함",[0,3,0,0,0,0]],["과일처럼 산뜻하고 새콤한 맛",[0,0,3,0,0,0]],["커피나 말차의 은은한 쌉싸름함",[0,0,0,3,0,0]]]},{"q":"빵을 먹는다면 어떤 풍미가 가장 좋아요?","a":[["달콤한 크림이나 잼",[3,0,0,0,0,0]],["구운 버터와 아몬드 향",[0,3,0,0,0,0]],["밀과 곡물 본연의 담백함",[0,0,0,0,3,0]],["치즈나 소금의 짭짤한 맛",[0,0,0,0,0,3]]]},{"q":"과일 디저트 중 어떤 맛이 더 마음에 드나요?","a":[["달콤하게 잘 익은 과일",[3,0,0,0,0,0]],["레몬처럼 산뜻한 새콤함",[0,0,3,0,0,0]],["과일과 크림의 고소한 조화",[0,3,0,0,0,0]],["과일 본연의 깔끔하고 담백한 맛",[0,0,0,0,3,0]]]},{"q":"초콜릿 디저트를 고른다면?","a":[["밀크초콜릿의 달콤함",[3,0,0,0,0,0]],["다크초콜릿의 쌉싸름함",[0,0,0,3,0,0]],["견과류가 더해진 고소함",[0,3,0,0,0,0]],["소금이 살짝 들어간 단짠 조합",[0,0,0,0,0,3]]]},{"q":"카페에서 구움과자를 고를 때?","a":[["달콤한 글레이즈나 설탕 코팅",[3,0,0,0,0,0]],["버터 풍미가 진한 구움과자",[0,3,0,0,0,0]],["담백하고 단맛이 적은 구움과자",[0,0,0,0,3,0]],["소금이나 치즈가 들어간 짭짤한 구움과자",[0,0,0,0,0,3]]]},{"q":"가장 좋아하는 마무리 맛은?","a":[["입안에 남는 달콤한 여운",[3,0,0,0,0,0]],["견과류처럼 고소한 여운",[0,3,0,0,0,0]],["상큼하고 개운한 여운",[0,0,3,0,0,0]],["커피처럼 깊고 쌉싸름한 여운",[0,0,0,3,0,0]]]},{"q":"아이스크림을 고른다면 어떤 맛?","a":[["바닐라·초콜릿처럼 달콤한 맛",[3,0,0,0,0,0]],["피스타치오·아몬드처럼 고소한 맛",[0,3,0,0,0,0]],["레몬·요거트처럼 상큼한 맛",[0,0,3,0,0,0]],["말차·커피처럼 쌉싸름한 맛",[0,0,0,3,0,0]]]},{"q":"디저트와 함께 마실 음료는?","a":[["달콤한 바닐라 라테",[3,0,0,0,0,0]],["고소한 곡물 라테",[0,3,0,0,0,0]],["상큼한 과일 에이드",[0,0,3,0,0,0]],["깔끔한 아메리카노",[0,0,0,3,0,0]]]},{"q":"빵 속 재료로 가장 끌리는 것은?","a":[["달콤한 팥앙금이나 커스터드",[3,0,0,0,0,0]],["고소한 견과류나 밤",[0,3,0,0,0,0]],["담백한 감자나 곡물",[0,0,0,0,3,0]],["짭짤한 치즈나 올리브",[0,0,0,0,0,3]]]},{"q":"파이와 페이스트리 중 고른다면?","a":[["설탕 시럽이 코팅된 달콤한 파이",[3,0,0,0,0,0]],["버터 향이 풍부한 페이스트리",[0,3,0,0,0,0]],["과일의 새콤함이 살아 있는 파이",[0,0,3,0,0,0]],["소금이나 치즈가 들어간 짭짤한 페이스트리",[0,0,0,0,0,3]]]},{"q":"어떤 향이 디저트에서 가장 반가워요?","a":[["바닐라와 캐러멜 향",[3,0,0,0,0,0]],["볶은 견과류와 버터 향",[0,3,0,0,0,0]],["레몬과 베리 향",[0,0,3,0,0,0]],["커피와 말차 향",[0,0,0,3,0,0]]]},{"q":"단맛의 정도는 어느 쪽이 좋아요?","a":[["확실하게 달콤한 맛",[3,0,0,0,0,0]],["단맛보다 고소한 풍미가 중심인 맛",[0,3,0,0,0,0]],["단맛과 산미가 균형 잡힌 맛",[0,0,3,0,0,0]],["단맛이 적고 담백한 맛",[0,0,0,0,3,0]]]},{"q":"짭짤한 디저트도 좋아하나요?","a":[["달콤함이 중심인 디저트가 좋아요",[3,0,0,0,0,0]],["견과류와 버터의 고소함이 좋아요",[0,3,0,0,0,0]],["치즈나 소금이 살짝 느껴지는 단짠 디저트가 좋아요",[0,0,0,0,0,3]],["아예 담백하고 깔끔한 맛이 좋아요",[0,0,0,0,3,0]]]},{"q":"어떤 재료 조합이 가장 맛있어 보여요?","a":[["초콜릿과 캐러멜",[3,0,0,0,0,0]],["아몬드와 버터",[0,3,0,0,0,0]],["레몬과 크림치즈",[0,0,3,0,0,0]],["말차와 다크초콜릿",[0,0,0,3,0,0]]]},{"q":"베이커리에서 하나만 고른다면?","a":[["달콤한 크림빵",[3,0,0,0,0,0]],["고소한 크루아상이나 퀸아망",[0,3,0,0,0,0]],["담백한 바게트나 치아바타",[0,0,0,0,3,0]],["짭짤한 소금빵이나 치즈빵",[0,0,0,0,0,3]]]},{"q":"치즈 디저트에서 선호하는 맛은?","a":[["달콤한 치즈케이크",[3,0,0,0,0,0]],["고소하고 진한 치즈 풍미",[0,3,0,0,0,0]],["요거트처럼 산뜻한 산미",[0,0,3,0,0,0]],["짭짤한 치즈의 풍미",[0,0,0,0,0,3]]]},{"q":"견과류 디저트를 고른다면?","a":[["견과류에 꿀이나 시럽이 더해진 맛",[3,0,0,0,0,0]],["견과류 자체의 진한 고소함",[0,3,0,0,0,0]],["과일과 견과류가 어우러진 산뜻함",[0,0,3,0,0,0]],["소금이 더해진 고소하고 짭짤한 맛",[0,0,0,0,0,3]]]},{"q":"커피와 함께 먹을 디저트는?","a":[["달콤한 케이크나 쿠키",[3,0,0,0,0,0]],["버터 풍미가 좋은 스콘",[0,3,0,0,0,0]],["담백한 빵이나 비스킷",[0,0,0,0,3,0]],["쌉싸름한 초콜릿 디저트",[0,0,0,3,0,0]]]},{"q":"과일이 들어간 디저트에서 중요한 것은?","a":[["과일의 달콤함",[3,0,0,0,0,0]],["과일과 크림의 고소한 조화",[0,3,0,0,0,0]],["과일의 상큼한 산미",[0,0,3,0,0,0]],["단맛이 과하지 않은 담백함",[0,0,0,0,3,0]]]},{"q":"식사 후 디저트를 먹는다면?","a":[["달콤하게 마무리하고 싶어요",[3,0,0,0,0,0]],["고소한 풍미를 천천히 즐기고 싶어요",[0,3,0,0,0,0]],["입안을 산뜻하게 정리하고 싶어요",[0,0,3,0,0,0]],["자극적이지 않고 담백하게 마무리하고 싶어요",[0,0,0,0,3,0]]]},{"q":"어떤 디저트가 더 특별하게 느껴지나요?","a":[["달콤한 크림과 초콜릿이 풍성한 디저트",[3,0,0,0,0,0]],["버터와 견과류 풍미가 진한 디저트",[0,3,0,0,0,0]],["과일의 새콤함이 살아 있는 디저트",[0,0,3,0,0,0]],["커피나 말차의 쌉싸름함이 살아 있는 디저트",[0,0,0,3,0,0]]]},{"q":"간식으로 빵을 먹는다면?","a":[["달콤한 단팥빵이나 소라빵",[3,0,0,0,0,0]],["고소한 모카번이나 견과류빵",[0,3,0,0,0,0]],["담백한 치아바타나 바게트",[0,0,0,0,3,0]],["짭짤한 소금빵이나 치즈빵",[0,0,0,0,0,3]]]},{"q":"디저트의 전체적인 인상은 어떤 게 좋아요?","a":[["달콤하고 풍성한 느낌",[3,0,0,0,0,0]],["고소하고 깊은 느낌",[0,3,0,0,0,0]],["상큼하고 산뜻한 느낌",[0,0,3,0,0,0]],["담백하고 깔끔한 느낌",[0,0,0,0,3,0]]]},{"q":"마지막으로 가장 자주 찾게 되는 맛은?","a":[["달콤함",[3,0,0,0,0,0]],["고소함",[0,3,0,0,0,0]],["상큼함",[0,0,3,0,0,0]],["짭짤함 또는 담백함",[0,0,0,0,0,3]]]}];
+const DESSERTS = [
+ {name:'마카롱',emoji:'🧁',image:'https://images.unsplash.com/photo-1558326567-98ae2405596b?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/macarons-on-table-WbZesfqwR-A',desc:'바삭한 꼬끄와 달콤한 필링이 매력적인 디저트',tags:['달콤함'],w:[3, 0, 0, 0, 0, 0]},
+ {name:'과일 타르트',emoji:'🥝',image:'https://images.unsplash.com/photo-1670819916757-e8d5935a6c65?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/a-group-of-fruit-tarts-sitting-on-top-of-a-table-K8z5FJUay74',desc:'상큼한 과일과 바삭한 타르트지가 어우러져요',tags:['상큼함','달콤함'],w:[1, 0, 3, 0, 0, 0]},
+ {name:'브라우니',emoji:'🍫',image:'https://images.unsplash.com/photo-1777647364657-2319b02095de?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/a-rich-chocolate-brownie-on-a-white-plate-yBNwcGFDqBk',desc:'꾸덕한 초콜릿 풍미와 진한 카카오의 조화',tags:['달콤함','쌉사름함'],w:[2, 0, 0, 2, 0, 0]},
+ {name:'애플파이',emoji:'🥧',image:'assets/apple-pie.webp',source:'https://unsplash.com/photos/a-slice-of-apple-pie-on-a-plate-next-to-a-cup-of-coffee-a1f1LuWuFkE',desc:'향긋한 사과와 버터 풍미가 포근하게 어울려요',tags:['달콤함','고소함'],w:[2, 2, 1, 0, 0, 0]},
+ {name:'몽블랑',emoji:'🌰',image:'https://images.unsplash.com/photo-1743294856703-b8d4ec96454e?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/delicious-cakes-and-pastries-are-on-display-DSKfakMc63w',desc:'밤의 은은한 단맛과 묵직한 고소함을 즐겨요',tags:['고소함','달콤함'],w:[1, 3, 0, 0, 0, 0]},
+ {name:'레몬 머랭 파이',emoji:'🍋',image:'https://images.unsplash.com/photo-1774119729324-a43894d5649c?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/a-rectangular-lemon-tart-topped-with-meringue-and-lime-4wx_N9ebs-E',desc:'새콤한 레몬 필링과 폭신한 머랭의 조합',tags:['상큼함','달콤함'],w:[1, 0, 3, 0, 0, 0]},
+ {name:'에그타르트',emoji:'🥚',image:'https://images.unsplash.com/photo-1778489927149-fa5b013e2725?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/display-of-assorted-pastries-and-baked-goods-laUoFjCotOM',desc:'고소한 페이스트리와 부드러운 커스터드',tags:['고소함','달콤함'],w:[1, 2, 0, 0, 0, 0]},
+ {name:'녹차 아이스크림',emoji:'🍵',image:'https://images.unsplash.com/photo-1779829278703-1967d99a7a38?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/green-matcha-soft-serve-ice-cream-cone-in-a-stand-hpurUHFeaD8',desc:'은은한 말차의 쌉싸름함과 부드러운 풍미',tags:['쌉사름함','고소함'],w:[0, 1, 0, 3, 0, 0]},
+ {name:'티라미수',emoji:'☕',image:'https://images.unsplash.com/photo-1766232333746-b0a2697d6d0d?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/a-delicious-tiramisu-dessert-in-a-glass-dish-v5m_Dm7BQ_c',desc:'커피 향과 코코아의 쌉싸름함, 크림의 달콤함',tags:['쌉사름함','달콤함'],w:[2, 0, 0, 2, 0, 0]},
+ {name:'크림 브륄레',emoji:'🍮',image:'https://images.unsplash.com/photo-1779094543236-6c64b71ae14e?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/creme-brulee-with-mint-garnish-on-a-blue-napkin-EIiS4WcsSGA',desc:'얇게 깨지는 캐러멜과 부드러운 커스터드',tags:['달콤함','고소함'],w:[2, 1, 0, 0, 0, 0]},
+ {name:'마들렌',emoji:'🐚',image:'https://cdn.pixabay.com/photo/2019/11/21/18/22/madeleine-4643126_1280.jpg',source:'https://pixabay.com/photos/madeleine-dessert-break-cafe-sugar-4643126/',desc:'버터 향이 은은하고 촉촉한 프랑스식 조개 모양 구움과자',tags:['고소함','달콤함'],w:[1, 3, 0, 0, 0, 0]},
+ {name:'밀푀유',emoji:'🥐',image:'https://i.pinimg.com/736x/ba/e1/8a/bae18ac9f6c62e1b47cc839eca65585d.jpg',source:'https://www.pinterest.com/pin/pierre-herme-mille-feuille-a-french-pastry-delight--57209857753388682/',desc:'바삭한 페이스트리 사이에 부드러운 크림을 겹겹이 채운 디저트',tags:['고소함','달콤함'],w:[2, 2, 0, 0, 0, 0]},
+ {name:'에끌레어',emoji:'🍫',image:'https://bakingheritage.com/_next/image?q=75&url=https%3A%2F%2Ftzgmgztvdcwfbqivozai.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Ff0cf6fd7-a6e6-4571-90af-dd4e3df49729%2F767294b5-d156-4c5c-865c-da7b40227cb0.jpeg&w=3840',source:'https://bakingheritage.com/history/history-of-chocolate-eclairs',desc:'길쭉한 슈 안에 크림을 채우고 초콜릿을 입힌 디저트',tags:['달콤함','쌉사름함'],w:[2, 0, 0, 1, 0, 0]},
+ {name:'두쫀쿠',emoji:'🍪',image:'https://theseedwikifile.theseed.io/0a/0a1fce80eefffa81ba07617924467b0791db7b4601f4c1dcc730b1061711b253.webp',source:'https://theseed.io/w/%EB%91%90%EB%B0%94%EC%9D%B4%20%EC%AB%80%EB%93%9D%20%EC%BF%A0%ED%82%A4',desc:'쫀득한 식감과 진한 초콜릿, 고소한 피스타치오 풍미가 어울리는 쿠키',tags:['달콤함','고소함'],w:[2, 2, 0, 1, 0, 0]},
+ {name:'과일 찹쌀떡',emoji:'🍓',image:'https://semie.cooking/image/contents/recipe/kx/ar/ehzwzuuh/IRD/121693381eknk.jpg',source:'https://semie.cooking/recipe-lab/archive/fruit-chapssaltteok',desc:'쫀득한 찹쌀떡 안에 달콤한 앙금과 상큼한 과일을 넣은 디저트',tags:['상큼함','달콤함'],w:[2, 0, 2, 0, 0, 0]},
+ {name:'푸딩',emoji:'🍮',image:'https://images.unsplash.com/photo-1779094543236-6c64b71ae14e?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/creme-brulee-with-mint-garnish-on-a-blue-napkin-EIiS4WcsSGA',desc:'탱글하고 부드러운 커스터드에 달콤한 캐러멜이 어우러져요',tags:['달콤함','고소함'],w:[3, 0, 0, 0, 0, 0]},
+ {name:'롤케이크',emoji:'🍥',image:'https://images.unsplash.com/photo-1772469425825-b1b5309760d4?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/chocolate-swiss-roll-cake-with-white-cream-filling-DhChe2qNTOI',desc:'폭신한 시트에 크림을 말아 만든 부드러운 케이크',tags:['달콤함','고소함'],w:[2, 1, 0, 0, 0, 0]},
+ {name:'피자빵',emoji:'🍕',image:'https://images.unsplash.com/photo-1567995515299-d6c77c005109?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/pizza-and-bread-aXGlCFJ2HFg',desc:'쫄깃한 빵 위에 토마토소스와 치즈, 토핑을 올린 베이커리',tags:['고소함'],w:[0, 1, 0, 0, 1, 2]},
+ {name:'마늘빵',emoji:'🧄',image:'https://images.unsplash.com/photo-1556008531-57e6eefc7be4?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/garlic-bread-yl33be56sbg',desc:'바삭한 빵에 마늘과 버터 향이 진하게 배어 있는 베이커리',tags:['고소함'],w:[0, 2, 0, 0, 1, 1]},
+ {name:'베이글',emoji:'🥯',image:'https://images.unsplash.com/photo-1713871244349-c03529c66a13?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/a-bunch-of-bagels-sitting-on-a-cooling-rack-WGWzmO65Ouo',desc:'쫄깃하고 담백해 크림치즈나 다양한 재료와 잘 어울리는 빵',tags:['고소함'],w:[0, 1, 0, 0, 3, 0]},
+ {name:'쿠키',emoji:'🍪',image:'assets/cookie.webp',source:'https://unsplash.com/photos/white-and-brown-cookies-on-clear-glass-plate-GnnVQ9foPA8',desc:'바삭하거나 촉촉한 식감과 달콤한 버터 풍미가 매력적이에요',tags:['달콤함','고소함'],w:[2, 1, 0, 0, 0, 0]},
+ {name:'파블로바',emoji:'🍓',image:'https://images.unsplash.com/photo-1676968909214-5a3c9f4bacac?auto=format&fit=crop&w=900&q=85',source:'https://unsplash.com/photos/two-desserts-on-a-white-plate-on-a-table-FBX0X6zKqks',desc:'겉은 바삭하고 속은 폭신한 머랭에 과일과 크림을 곁들여요',tags:['달콤함','상큼함'],w:[2, 0, 2, 0, 0, 0]},
+ {name:'파운드케이크',emoji:'🍰',image:'https://shop.sweetsvillage.com/cdn/shop/articles/2_bffde448-e123-41da-823b-7787d4d6bb69.png?v=1747775180',source:'https://shop.sweetsvillage.com/blogs/knowledge/pound-cake-baking-time-1',desc:'버터의 풍미가 진하고 묵직한 식감의 클래식한 케이크',tags:['고소함','달콤함'],w:[1, 3, 0, 0, 0, 0]},
+ {name:'크루아상',emoji:'🥐',image:'assets/croissant.webp',source:'https://unsplash.com/photos/a-single-croissant-pastry-on-a-white-background-D2SDg1PSYhE',desc:'겹겹이 살아 있는 바삭한 결에 버터 향이 풍부한 페이스트리',tags:['고소함'],w:[0, 3, 0, 0, 0, 0]},
+ {name:'치즈케이크',emoji:'🧀',image:'https://www.thedailymeal.com/img/gallery/the-cheesecake-factorys-original-cheesecake-recipe-has-apparently-never-changed/l-intro-1690922415.jpg',source:'https://www.thedailymeal.com/1354753/cheesecake-factory-original-cheesecake-recipe-unchanged/',desc:'진한 치즈의 풍미와 부드러운 질감이 돋보이는 케이크',tags:['고소함','달콤함'],w:[2, 2, 0, 0, 0, 0]},
+ {name:'메론빵',emoji:'🍈',image:'assets/melonpan.webp',source:'https://unsplash.com/photos/a-bunch-of-bagels-sitting-on-a-cooling-rack-WGWzmO65Ouo',desc:'겉은 바삭하고 속은 폭신한 달콤한 쿠키 반죽 빵',tags:['달콤함','고소함'],w:[2, 1, 0, 0, 0, 0]},
+ {name:'슈니발렌',emoji:'❄️',image:'assets/schneeballen.webp',source:'',desc:'바삭한 반죽 조각에 슈가파우더를 입힌 독일식 과자',tags:["달콤함", "고소함"],w:[2, 1, 0, 0, 0, 0]},
+ {name:'수플레',emoji:'🥞',image:'assets/souffle.webp',source:'',desc:'폭신하고 가벼운 식감이 매력적인 부드러운 디저트',tags:["달콤함", "고소함"],w:[2, 1, 0, 0, 0, 0]},
+ {name:'츄러스',emoji:'🍩',image:'assets/churros.webp',source:'',desc:'겉은 바삭하고 속은 쫄깃하며 시나몬 설탕을 입힌 간식',tags:["달콤함", "고소함"],w:[2, 1, 0, 0, 0, 0]},
+ {name:'오페라',emoji:'🍫',image:'assets/opera.webp',source:'',desc:'커피 버터크림과 초콜릿 가나슈를 겹겹이 쌓은 프랑스 케이크',tags:["쌉사름함", "달콤함"],w:[2, 0, 0, 2, 0, 0]},
+ {name:'와플',emoji:'🧇',image:'assets/waffle.webp',source:'',desc:'격자 모양으로 구워 바삭함과 폭신함을 함께 즐기는 디저트',tags:["달콤함", "고소함"],w:[2, 2, 0, 0, 0, 0]},
+ {name:'퀸아망',emoji:'🥐',image:'assets/kouign-amann.webp',source:'',desc:'버터와 설탕이 캐러멜처럼 구워져 겉이 바삭한 페이스트리',tags:["고소함", "달콤함"],w:[2, 3, 0, 0, 0, 0]},
+ {name:'티그레',emoji:'🍫',image:'assets/tigre.webp',source:'',desc:'초콜릿 칩이 들어간 촉촉한 구움과자에 가나슈를 채운 디저트',tags:["달콤함", "쌉사름함"],w:[2, 1, 0, 1, 0, 0]},
+ {name:'휘낭시에',emoji:'🧈',image:'assets/financier.webp',source:'',desc:'태운 버터와 아몬드 가루의 고소한 풍미가 진한 구움과자',tags:["고소함", "달콤함"],w:[1, 3, 0, 0, 0, 0]},
+ {name:'소금빵',emoji:'🥖',image:'assets/salt-bread.webp',source:'',desc:'버터 풍미와 은은한 짠맛, 바삭한 바닥이 특징인 빵',tags:["고소함"],w:[0, 2, 0, 0, 0, 3]},
+ {name:'버터떡',emoji:'🧈',image:'assets/butter-mochi.webp',source:'',desc:'겉은 노릇하고 속은 쫀득한 버터 풍미의 떡 디저트',tags:["고소함", "달콤함"],w:[1, 2, 0, 0, 0, 0]},
+ {name:'바게트',emoji:'🥖',image:'assets/baguette.webp',source:'',desc:'겉은 단단하고 바삭하며 속은 담백한 프랑스 빵',tags:["고소함"],w:[0, 0, 0, 0, 3, 0]},
+ {name:'치아바타',emoji:'🍞',image:'assets/ciabatta.webp',source:'',desc:'수분감이 많아 속이 촉촉하고 기공이 큰 이탈리아 빵',tags:["고소함"],w:[0, 0, 0, 0, 3, 0]},
+ {name:'소보로빵',emoji:'🍞',image:'assets/soboro.webp',source:'',desc:'고소하고 달콤한 소보로 토핑을 얹은 폭신한 빵',tags:["고소함", "달콤함"],w:[2, 1, 0, 0, 0, 0]},
+ {name:'슈톨렌',emoji:'🍇',image:'assets/soboro.webp',source:'',desc:'건과일과 견과류, 향신료를 넣어 숙성해 먹는 독일식 크리스마스 빵',tags:["고소함", "달콤함"],w:[2, 2, 0, 1, 0, 0]},
+ {name:'스콘',emoji:'☕',image:'assets/scone.webp',source:'',desc:'포슬포슬하게 부서지는 식감과 버터 향이 좋은 티타임 베이커리',tags:["고소함"],w:[0, 2, 0, 0, 2, 0]},
+ {name:'초코소라빵',emoji:'🍫',image:'assets/choco-cone.webp',source:'',desc:'소라 모양 빵 안에 달콤한 초콜릿 크림을 채운 빵',tags:["달콤함"],w:[3, 0, 0, 1, 0, 0]},
+ {name:'모카빵',emoji:'☕',image:'assets/mocha-bun.webp',source:'',desc:'커피 향이 은은하게 퍼지고 달콤한 토핑이 어울리는 빵',tags:["쌉사름함", "달콤함"],w:[2, 0, 0, 1, 0, 0]},
+ {name:'단팥빵',emoji:'🍞',image:'assets/danpat.webp',source:'',desc:'부드러운 빵 안에 달콤하고 묵직한 팥앙금을 넣은 빵',tags:["달콤함", "고소함"],w:[2, 1, 0, 0, 0, 0]},
+ {name:'공갈빵',emoji:'🫓',image:'assets/gonggal.webp',source:'',desc:'속이 비어 있고 얇고 바삭한 표면에 달콤한 시럽 향이 감도는 빵',tags:["달콤함", "고소함"],w:[2, 0, 0, 0, 1, 0]}
+];
+const profiles = {
+ '달콤함':{icon:'🍓',title:'달콤함을 사랑하는 스위트 취향',desc:'초콜릿, 크림, 캐러멜처럼 기분 좋은 단맛이 매력적인 디저트를 좋아해요.'},
+ '고소함':{icon:'🌰',title:'고소한 풍미를 즐기는 너티 취향',desc:'버터, 견과류, 구운 곡물처럼 깊고 고소한 풍미가 느껴지는 디저트를 좋아해요.'},
+ '상큼함':{icon:'🍋',title:'산뜻한 맛을 찾는 프레시 취향',desc:'과일과 시트러스처럼 새콤하고 산뜻한 맛으로 기분 좋게 마무리되는 디저트를 좋아해요.'},
+ '쌉싸름함':{icon:'🍵',title:'쌉싸름한 깊이를 즐기는 비터 취향',desc:'커피, 말차, 다크초콜릿처럼 은은한 쓴맛과 깊은 풍미가 있는 디저트를 좋아해요.'},
+ '담백함':{icon:'🥖',title:'담백하고 깔끔한 취향',desc:'과한 단맛이나 향보다 재료 본연의 맛이 살아 있는 담백한 빵과 디저트를 좋아해요.'},
+ '짭짤함':{icon:'🥨',title:'짭짤한 단짠 취향',desc:'소금, 치즈, 올리브처럼 짭짤한 풍미가 매력적인 디저트와 베이커리를 좋아해요.'}
+};
+let idx=0, answers=[];
+const $=id=>document.getElementById(id);
+function show(id){['start','quiz','result'].forEach(x=>$(x).classList.toggle('hidden',x!==id));}
+function start(){idx=0;answers=[];show('quiz');render();}
+function render(){
+ const q=QUESTIONS[idx],n=idx+1,pct=Math.round(idx/QUESTIONS.length*100);
+ $('progressText').textContent=`QUESTION ${String(n).padStart(2,'0')} / ${QUESTIONS.length}`;
+ $('progressPct').textContent=pct+'%';$('progressFill').style.width=pct+'%';$('questionText').textContent=q.q;
+ $('answers').innerHTML='';
+ q.a.forEach((a,i)=>{const b=document.createElement('button');b.className='answer';b.innerHTML=`<span class="dot">${String.fromCharCode(65+i)}</span><span>${a[0]}</span>`;b.addEventListener('click',()=>choose(i));$('answers').appendChild(b)});
+ $('backBtn').disabled=idx===0;
+}
+function choose(i){answers[idx]=i;idx++;if(idx>=QUESTIONS.length)result();else render();}
+$('backBtn').addEventListener('click',()=>{if(idx>0){idx--;render();}});
+function result(){
+ const scores=[0,0,0,0,0,0];QUESTIONS.forEach((q,i)=>q.a[answers[i]][1].forEach((v,j)=>scores[j]+=v));
+ const total=scores.reduce((a,b)=>a+b,0)||1,percent=scores.map(x=>Math.round(x/total*100));
+ const ranked=percent.map((v,i)=>({i,v})).sort((a,b)=>b.v-a.v);
+ const main=TASTES[ranked[0].i],second=TASTES[ranked[1].i],profile=profiles[main];
+ $('resultIcon').textContent=profile.icon;$('resultTitle').textContent=profile.title;
+ $('resultDesc').textContent=profile.desc+` 특히 ${second} 취향도 함께 나타났어요.`;
+ $('tasteBars').innerHTML='';
+ ranked.forEach((r,k)=>{const row=document.createElement('div');row.className='barrow'+(k===0?' top':'');row.innerHTML=`<strong>${TASTES[r.i]}</strong><div class="bar"><i style="width:${r.v}%"></i></div><span>${r.v}%</span>`;$('tasteBars').appendChild(row)});
+ // 맛 점수의 비율을 기준으로 디저트와의 취향 적합도를 계산해요.
+ const tasteTotal=scores.reduce((a,b)=>a+b,0)||1;
+ const tasteRatio=scores.map(v=>v/tasteTotal);
+ // 같은 맛 계열만 3개 이상 몰리지 않도록 추천 구성을 다양화해요.
+ // 답변 조합별 작은 동점 보정값으로 선택이 달라질 수 있게 해요.
+ // 1·2순위 맛을 가장 중요하게 반영해 추천해요.
+ const tasteOrder=scores.map((v,i)=>({i,v})).sort((a,b)=>b.v-a.v);
+ const priority=[0.25,0.25,0.25,0.25,0.25,0.25];
+ priority[tasteOrder[0].i]=1.0;
+ priority[tasteOrder[1].i]=0.82;
+ priority[tasteOrder[2].i]=0.32;
+ priority[tasteOrder[3].i]=0.20;
+ priority[tasteOrder[4].i]=0.12;
+ priority[tasteOrder[5].i]=0.08;
+ const answerKey=answers.join('');
+ const tieBreak=name=>{
+   let h=0; const str=answerKey+'-'+name;
+   for(let k=0;k<str.length;k++) h=(h*31+str.charCodeAt(k))>>>0;
+   return (h%1000)/100000;
+ };
+ const rankedDesserts=DESSERTS.map((d,order)=>{
+   const weightTotal=d.w.reduce((a,b)=>a+b,0)||1;
+   const fit=d.w.reduce((sum,w,i)=>sum+(w/weightTotal)*priority[i],0);
+   return {d,score:fit+tieBreak(d.name),order};
+ }).sort((a,b)=>b.score-a.score);
+ // 맛 계열을 억지로 섞지 않고, 실제 1·2순위 취향과 가까운 순서대로 TOP 5를 골라요.
+ const scored=rankedDesserts.slice(0,5);
+ $('dessertCards').innerHTML='';
+ scored.forEach((x,i)=>{const el=document.createElement('article');el.className='dessert';el.innerHTML=`<div class="dessert-visual"><img src="${x.d.image}" alt="${x.d.name} 사진" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='${x.d.emoji}'"></div><div class="dessert-body"><div class="rank">RECOMMEND ${String(i+1).padStart(2,'0')}</div><h4 class="dessert-title">${x.d.name}</h4><p class="dessert-desc">${x.d.desc}</p><div class="tags">${x.d.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>`;$('dessertCards').appendChild(el)});
+ $('resultNote').textContent=`나의 1순위 맛은 ${main}, 2순위 맛은 ${second}이에요. 추천 순위는 24개 질문에서 나온 여섯 가지 맛 점수를 바탕으로 1·2순위 취향에 더 높은 비중을 두어 계산했어요. 정답이나 오답은 없으니 결과를 가볍게 즐겨주세요!`;
+ renderCatalog('전체');
+ show('result');
+}
+
+const dessertCategory = name => {
+ const groups={
+ '케이크·디저트':['마카롱','과일 타르트','브라우니','애플파이','몽블랑','레몬 머랭 파이','에그타르트','녹차 아이스크림','티라미수','크림 브륄레','푸딩','롤케이크','파블로바','치즈케이크','수플레','오페라'],
+ '구움과자':['마들렌','쿠키','파운드케이크','티그레','휘낭시에','스콘'],
+ '빵':['피자빵','마늘빵','베이글','메론빵','소금빵','버터떡','바게트','치아바타','소보로빵','슈톨렌','초코소라빵','모카빵','단팥빵','공갈빵'],
+ '페이스트리':['밀푀유','에끌레어','크루아상','슈니발렌','츄러스','와플','퀸아망'],
+ '기타':['두쫀쿠','과일 찹쌀떡']
+ };
+ return Object.keys(groups).find(k=>groups[k].includes(name))||'기타';
+};
+function renderCatalog(filter='전체'){
+ const box=$('allDessertCards'); if(!box) return;
+ box.innerHTML='';
+ DESSERTS.filter(d=>filter==='전체'||dessertCategory(d.name)===filter).forEach(d=>{
+  const el=document.createElement('article');el.className='dessert';
+  el.innerHTML=`<div class="dessert-visual"><img src="${d.image}" alt="${d.name} 사진" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='${d.emoji}'"></div><div class="dessert-body"><h4 class="dessert-title">${d.name}</h4><p class="dessert-desc">${d.desc}</p><div class="tags">${d.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>`;
+  box.appendChild(el);
+ });
+}
+$('catalogFilters').addEventListener('click',e=>{
+ const b=e.target.closest('button[data-filter]'); if(!b)return;
+ $('catalogFilters').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));
+ renderCatalog(b.dataset.filter);
+});
+
+$('startBtn').addEventListener('click',start);
+$('restartBtn').addEventListener('click',()=>show('start'));
+</script>
+</body>
+</html>
